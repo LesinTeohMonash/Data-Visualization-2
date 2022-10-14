@@ -1,0 +1,36 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text": "Eutrophication by Different Types of Milk"},
+  "data": {
+    "url": "https://raw.githubusercontent.com/LesinTeohMonash/3179/main/Data%20Visualisation%202/datasets/dairy-plant-base.csv"
+  },
+  "params": [
+    {
+      "name": "Milk Filter",
+      "select": {"type": "point", "fields": ["Type of Milk"]},
+      "bind": "legend"
+    }
+  ],
+  "mark": "arc",
+  "encoding": {
+    "theta": {
+      "field": "Eutrophication from milks (g PO43-eq)",
+      "type": "quantitative"
+    },
+    "color": {"field": "Type of Milk", "type": "nominal"},
+    "opacity": {
+      "condition": {"param": "Milk Filter", "value": 0.9},
+      "value": 0.4
+    },
+    "tooltip": [
+      {"field": "Type of Milk", "type": "nominal"},
+      {
+        "field": "Eutrophication from milks (g PO43-eq)",
+        "type": "quantitative",
+        "title": "Eutrophication (g)"
+      },
+      {"field": "Eutrophication %", "type": "quantitative"}
+    ]
+  },
+  "config": {}
+}

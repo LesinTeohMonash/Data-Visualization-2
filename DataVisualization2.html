@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Data Visualization 2</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fondamento&family=Source+Sans+Pro:wght@200&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@2.1.0/build/pure-min.css" integrity="sha384-yHIFVG6ClnONEA5yB5DJXfW2/KC173DIQrYoZMEtBvGzmf0PKiGyNEqe9N6BNDBH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@2.1.0/build/grids-responsive-min.css" />
+
+    <link rel="stylesheet" href="DataVisualization2.css">
+</head>
+<body>
+    <h1 id="h1-style">Go Vegan</h1>
+
+    <!-- First Graphs -->
+    <h2>First Graphs</h2>
+    <div class="graphs-container">
+        <div class="first-graphs">
+            <div id="EutrofyingEmission"></div>
+            <p class="graph-title">Eutrofying Emission Visualization</p>
+        </div>
+        
+        <div class="first-graphs">
+            <div id="GHGEmission"></div>
+            <p class="graph-title">GHG Emission Visualization</p>
+        </div>
+        
+        <div class="first-graphs">
+            <div id="LandUsed"></div>
+            <p class="graph-title">Land Used Visualization</p>
+        </div>
+        
+        <div class="first-graphs">
+            <div id="WaterUsed"></div>
+            <p class="graph-title">Water Used Visualization</p>
+        </div>
+    </div>
+
+    <!-- Description for First Graphs -->
+    <div>
+        <p>The line charts above shows the food emission for all foods in the list.</p>
+        <p>If you want to check the emission of certain food, simply click on the "Food Selection" tab and choose the food that you after.</p>
+        <p>Observe these four line charts, it is obvious that beef, lamb, milk and food which are non vegan produce higher emission.</p>
+        <p>On the other hand, plant based food always produce less emission.</p>
+        <p>From these graphs, we only know which food produce more or less emission compared to other foods.</p>
+        <p>However, there is no clue to the factors and reasons to what cause the food emission vary to the types of foods. </p>
+    </div>
+    
+    <!-- Second Graphs -->
+    <h2>Second Graphs</h2>
+    <div class="graphs-container">
+        <div class="first-graphs">
+            <div id="EutrofyingMilk"></div>
+            <p class="graph-title">Eutrofying Emission by Milk Visualization</p>
+        </div>
+        
+        <div class="first-graphs">
+            <div id="GHGMilk"></div>
+            <p class="graph-title">GHG Emission by Milk Visualization</p>
+        </div>
+        
+        <div class="first-graphs">
+            <div id="LandMilk"></div>
+            <p class="graph-title">Land Used by Milk Visualization</p>
+        </div>
+        
+        <div class="first-graphs">
+            <div id="WaterMilk"></div>
+            <p class="graph-title">Water Used by Milk Visualization</p>
+        </div>
+    </div>
+        
+    <!-- Graph impact milk -->
+    <div id="impact-graphs">
+        <div id="ImpactMilk"></div>
+        <p class="impact-graph-title">Total Impact Visualization</p>
+    </div>
+
+    <!-- Description for Second Graphs -->
+    <div>
+        <p>From the pie charts above, we know that dairy milk produce higher emission to the environment.</p>
+        <p>Meanwhile, the plant-based milk are always produce less emision to the  environment.</p>
+        <p>From the bar chart, we know the impact that brought by the dairy milk is the most compared to other types of milk.</p>
+        <p>The type of milk that leads the least impact to the environment is soy milk and it is strongly recommended to consume any plant-based milk instead of dairy milk.</p>
+        <p>To see less types of milk, press the label on the right of the pie charts and bar chart. </p>
+        <p>Hover to the graphs and the information will be shown on the tooltip</p>
+    </div>
+    
+    <!-- Third Graph -->
+    <h2>Share Emission by each Countries</h2>
+    <div>
+        <h3>Line Chart</h3>
+        <div id="ShareEmission"></div>
+        <p class="left-title">Line Chart Visualization</p>
+    </div>
+
+    <!-- Description for Third Graphs -->
+    <div>
+        <p>The line chart above shows the food emission produce by each of the country.  </p>
+        <p>For instance, if a food is produced from Australia but exported to Africa, the food emission goes under Australia.</p>
+        <p>The share here means the percentage of the food which produce n percentage over the total food for each country.</p>
+        <p>For example, Australia produces n amount of food, while 10% of of them producing food emission. The share of food emission in Australia is 10%</p>
+    </div>
+    
+    <!-- Forth Graph -->
+    <div">
+        <h3>Map</h3>
+        <div id="MapVis"></div>
+        <p class="left-title">Map Visualization</p>
+    </div>
+
+    <!-- Description for Forth Graphs -->
+    <div>
+        <p>The map above shows which counties produce higher amount of food emission all around the world.</p>
+        <p>The colour of the countries and the size of the bubbles indicate the amount of the food emission</p>
+        <p>It is obvious the Brazil produces the highest amount of food emission compared to other countries in the list.</p>
+        <p>The amount of food emission produced by Australia is not as high as Brazil and China, instead, Australia only produces not greater than 1.2 percent of food emission.</p>
+        <p>The information of the countries for food emission is included in the tooltop. Simply hover the cursor to the countries you after, and the information will be shown.</p>
+    </div>
+
+    <script type="text/javascript">
+        // lollipop
+        var EutrofyingEmission = "https://raw.githubusercontent.com/LesinTeohMonash/3179/main/Data%20Visualisation%202/graphs/First%20Graph/EutrofyingEmissionLollipop.json";
+        var GHGEmission = "https://raw.githubusercontent.com/LesinTeohMonash/3179/main/Data%20Visualisation%202/graphs/First%20Graph/GHGEmissionLollipop.json";
+        var LandUsed = "https://raw.githubusercontent.com/LesinTeohMonash/3179/main/Data%20Visualisation%202/graphs/First%20Graph/LandUsedLollipop.json";
+        var WaterUsed = "https://raw.githubusercontent.com/LesinTeohMonash/3179/main/Data%20Visualisation%202/graphs/First%20Graph/WaterUsedLollipop.json";
+        
+        // pie chart
+        var EutrofyingMilk = "https://raw.githubusercontent.com/LesinTeohMonash/3179/main/Data%20Visualisation%202/graphs/Second%20Graph/EutrophicationPie.json";
+        var GHGMilk = "https://raw.githubusercontent.com/LesinTeohMonash/3179/main/Data%20Visualisation%202/graphs/Second%20Graph/GHGPie.json";
+        var LandMilk = "https://raw.githubusercontent.com/LesinTeohMonash/3179/main/Data%20Visualisation%202/graphs/Second%20Graph/LandUsedPie.json";
+        var WaterMilk = "https://raw.githubusercontent.com/LesinTeohMonash/3179/main/Data%20Visualisation%202/graphs/Second%20Graph/WaterUsedPie.json";
+        var ImpactMilk = "https://raw.githubusercontent.com/LesinTeohMonash/3179/main/Data%20Visualisation%202/graphs/Second%20Graph/ImpactBar.json";
+
+        var ShareEmission = "https://raw.githubusercontent.com/LesinTeohMonash/3179/main/Data%20Visualisation%202/graphs/Share/LineChart.json";
+        var MapVis = "https://raw.githubusercontent.com/LesinTeohMonash/3179/main/Data%20Visualisation%202/graphs/Share/Map.json";
+    
+        vegaEmbed('#EutrofyingEmission', EutrofyingEmission, { "actions": false });
+        vegaEmbed('#GHGEmission', GHGEmission, { "actions": false });
+        vegaEmbed('#LandUsed', LandUsed, { "actions": false });
+        vegaEmbed('#WaterUsed', WaterUsed, { "actions": false });
+        vegaEmbed('#EutrofyingMilk', EutrofyingMilk, { "actions": false });
+        vegaEmbed('#GHGMilk', GHGMilk, { "actions": false });
+        vegaEmbed('#LandMilk', LandMilk, { "actions": false });
+        vegaEmbed('#WaterMilk', WaterMilk, { "actions": false });
+        vegaEmbed('#ImpactMilk', ImpactMilk, { "actions": false });
+        vegaEmbed('#MapVis', MapVis, { "actions": false });
+    
+        vegaEmbed('#ShareEmission', ShareEmission, { "actions": false }).then(function (result) {
+          // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+        }).catch(console.error);
+    
+    </script>
+</body>
+</html>
