@@ -12,6 +12,34 @@
         "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
       },
   "projection": {"type": "equalEarth"},
+  "params": [
+    {
+      "name": "Continent_Selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "North America",
+          "South America",
+          "Europe",
+          "Africa",
+          "Asia",
+          "Oceania"
+        ],
+        "labels": [
+          "Show All",
+          "North America",
+          "South America",
+          "Europe",
+          "Africa",
+          "Asia",
+          "Oceania"
+        ],
+        "name": "Continent Selection: "
+      }
+    }
+  ],
+
   "layer": [
     {
       "transform": [
@@ -46,7 +74,7 @@
           "lookup": "properties.NAME",
           "from": {
             "data": {
-        "url": "https://raw.githubusercontent.com/LesinTeohMonash/3179/main/Data%20Visualisation%202/datasets/share-global-food-emissions.csv"
+        "url": "https://raw.githubusercontent.com/LesinTeohMonash/Data-Visualization-2/main/datasets/share-global-food-emissions.csv"
             },
             "key": "Entity",
             "fields": ["Share"]
@@ -90,8 +118,15 @@
 
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/LesinTeohMonash/3179/main/Data%20Visualisation%202/datasets/share-global-food-emissions.csv"
+        "url": "https://raw.githubusercontent.com/LesinTeohMonash/Data-Visualization-2/main/datasets/share-global-food-emissions.csv"
       },
+
+      "transform": [
+        {
+          "filter": "Continent_Selection == null || datum['continent'] == Continent_Selection"
+        }
+      ],
+
       "mark": {"type": "circle", "color": "#d19c1d"},
       "encoding": {
         "longitude": {"field": "longitude", "type": "quantitative"},
