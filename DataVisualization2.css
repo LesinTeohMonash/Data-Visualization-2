@@ -1,11 +1,11 @@
 #h1-style{
-    color: #007f5f;
+    color: #333d29;
     font-family: 'Fondamento', cursive;
     font-size: xx-large;
 }
 
 h2{
-    color: #55a630;
+    color: #333d29;
 }
 
 p{
@@ -21,9 +21,14 @@ p{
 }
 
 html, body{
-    padding-left: 10px;
-    background-color: #d8f3dc;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 50px;
+    padding-top: 10px;
+    background-color: #dde5b6;
 }
+
+
 
 .graphs-container{
     display: flex;
@@ -59,10 +64,15 @@ html, body{
 
 .impact-graph-title{
     font-size: small; 
-    padding-left: 110px;
 
 }
 
-#impact-graphs{
-    padding-left: 33px;
+.pure-u-1 img{
+    width: 85vw;
+    height: 10vw;
+}
+
+/* not working */
+.border-para{
+    border: 5px #333d29;
 }
