@@ -1,8 +1,13 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": "#f4f4d5",
   "width": 500,
   "height": 400,
-  "title": "Share of Global Food Emissions",
+  "title": {
+    "text": "Share of Global Food Emissions",
+    "color": "#333d29",
+    "fontSize": 20
+    },
   "data": {
     "url": "https://raw.githubusercontent.com/LesinTeohMonash/Data-Visualization-2/main/datasets/share-global-food-emissions.csv"
   },
@@ -13,6 +18,7 @@
         "input": "select",
         "options": [
           null,
+          "Show Default",
           "North America",
           "South America",
           "Europe",
@@ -22,6 +28,7 @@
         ],
         "labels": [
           "Show All",
+          "Show default",
           "North America",
           "South America",
           "Europe",
@@ -29,9 +36,10 @@
           "Asia",
           "Oceania"
         ],
-        "name": "Continent_Selection: "
+        "name": "Continent Selection: "
       }
     },
+
     {
       "name": "Entity_Selection",
       "select": {"type": "point", "fields": ["Entity"]},
@@ -39,10 +47,19 @@
     }
   ],
   "transform": [
+    {"calculate": "datum.Share * 1", "as": "_Share"},
+
+    {
+      "window": [{"op": "count", "as": "_sum"}],
+      "sort": [
+        {"field": "_sum", "order": "descending"}
+      ]
+    },
+
     {
       "filter": "Continent_Selection == null || datum['continent'] == Continent_Selection"
-    },
-    {"window": [{"op": "count", "as": "count"}]}
+    }
+
   ],
   "mark": "line",
   "encoding": {
@@ -61,6 +78,5 @@
       {"field": "Entity", "type": "nominal"},
       {"field": "Share", "type": "quantitative"}
     ]
-  },
-  "config": {}
+  }
 }
