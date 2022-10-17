@@ -131,8 +131,8 @@
       },
 
       "layer":[
-        {"mark": {"type": "bar", "size" : 1, "color": "#333d29"}},
-        {"mark": {"type": "circle", "color": "#333d29"}},
+        {"mark": {"type": "bar", "size" : 1, "color": "#80b918"}},
+        {"mark": {"type": "circle", "color": "#80b918"}},
         {
           "mark": {"type": "text", "align": "left", "fontSize": 10},
           
@@ -181,8 +181,8 @@
         ]
       },
       "layer": [
-        {"mark": {"type": "bar", "size" : 1, "color": "#333d29"}},
-        {"mark": {"type": "circle", "color": "#333d29"}},
+        {"mark": {"type": "bar", "size" : 1, "color": "#80b918"}},
+        {"mark": {"type": "circle", "color": "#80b918"}},
         {
           "mark": {"type": "text", "align": "left", "fontSize": 10},
           "encoding": {
@@ -226,8 +226,8 @@
         ]
       },
       "layer": [
-        {"mark": {"type": "bar", "size" : 1, "color": "#333d29"}},
-        {"mark": {"type": "circle", "color": "#333d29"}},
+        {"mark": {"type": "bar", "size" : 1, "color": "#80b918"}},
+        {"mark": {"type": "circle", "color": "#80b918"}},
         {
           "mark": {"type": "text", "align": "left", "fontSize": 10},
           "encoding": {
@@ -271,8 +271,8 @@
         ]
       },
       "layer": [
-        {"mark": {"type": "bar", "size" : 1, "color": "#333d29"}},
-        {"mark": {"type": "circle", "color": "#333d29"}},
+        {"mark": {"type": "bar", "size" : 1, "color": "#80b918"}},
+        {"mark": {"type": "circle", "color": "#80b918"}},
         {
           "mark": {"type": "text", "align": "left", "fontSize": 10},
           "encoding": {
