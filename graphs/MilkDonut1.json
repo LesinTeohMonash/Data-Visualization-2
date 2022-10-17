@@ -1,0 +1,597 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "background": "#dde5b6",
+  "padding": 5,
+  "height": 200,
+  "data": [
+    {"name": "Milk_Filter_store"},
+    {
+      "name": "source_0",
+      "url": "https://raw.githubusercontent.com/LesinTeohMonash/Data-Visualization-2/main/datasets/dairy-plant-base.csv",
+      "format": {"type": "csv", "delimiter": ","}
+    },
+    {
+      "name": "type of emission",
+      "values": [
+        {"type1": "Eutrophication"},
+        {"type2": "Water Used"},
+        {"type3": "Land Used"},
+        {"type4": "GHG"}
+      ],
+      "format": {}
+    },
+    {
+      "name": "data_0",
+      "source": "source_0",
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [],
+          "field": "Eutrophication from milks (g PO43-eq)",
+          "sort": {"field": ["Type of Milk"], "order": ["ascending"]},
+          "as": [
+            "Eutrophication from milks (g PO43-eq)_start",
+            "Eutrophication from milks (g PO43-eq)_end"
+          ],
+          "offset": "zero"
+        },
+        {
+          "type": "filter",
+          "expr": "isValid(datum[\"Eutrophication from milks (g PO43-eq)\"]) && isFinite(+datum[\"Eutrophication from milks (g PO43-eq)\"])"
+        }
+      ]
+    },
+    {
+      "name": "data_1",
+      "source": "source_0",
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [],
+          "field": "GHG emissions of milks (kg CO2eq)",
+          "sort": {"field": ["Type of Milk"], "order": ["ascending"]},
+          "as": [
+            "GHG emissions of milks (kg CO2eq)_start",
+            "GHG emissions of milks (kg CO2eq)_end"
+          ],
+          "offset": "zero"
+        },
+        {
+          "type": "filter",
+          "expr": "isValid(datum[\"GHG emissions of milks (kg CO2eq)\"]) && isFinite(+datum[\"GHG emissions of milks (kg CO2eq)\"])"
+        }
+      ]
+    },
+    {
+      "name": "data_2",
+      "source": "source_0",
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [],
+          "field": "Land use of milks (m2)",
+          "sort": {"field": ["Type of Milk"], "order": ["ascending"]},
+          "as": ["Land use of milks (m2)_start", "Land use of milks (m2)_end"],
+          "offset": "zero"
+        },
+        {
+          "type": "filter",
+          "expr": "isValid(datum[\"Land use of milks (m2)\"]) && isFinite(+datum[\"Land use of milks (m2)\"])"
+        }
+      ]
+    },
+    {
+      "name": "data_3",
+      "source": "source_0",
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [],
+          "field": "Water use of milks (L)",
+          "sort": {"field": ["Type of Milk"], "order": ["ascending"]},
+          "as": ["Water use of milks (L)_start", "Water use of milks (L)_end"],
+          "offset": "zero"
+        },
+        {
+          "type": "filter",
+          "expr": "isValid(datum[\"Water use of milks (L)\"]) && isFinite(+datum[\"Water use of milks (L)\"])"
+        }
+      ]
+    },
+    {
+      "name": "data_5",
+      "source": "type of emission",
+      "transform": [
+        {"type": "filter", "expr": "datum.type1 == 'Eutrophication'"}
+      ]
+    },
+    {
+      "name": "data_6",
+      "source": "type of emission",
+      "transform": [{"type": "filter", "expr": "datum.type4 == 'GHG'"}]
+    },
+    {
+      "name": "data_7",
+      "source": "type of emission",
+      "transform": [{"type": "filter", "expr": "datum.type3 == 'Land Used'"}]
+    },
+    {
+      "name": "data_8",
+      "source": "type of emission",
+      "transform": [{"type": "filter", "expr": "datum.type2 == 'Water Used'"}]
+    }
+  ],
+  "signals": [
+    {"name": "childWidth", "value": 200},
+    {
+      "name": "unit",
+      "value": {},
+      "on": [
+        {"events": "mousemove", "update": "isTuple(group()) ? group() : unit"}
+      ]
+    },
+    {
+      "name": "Milk_Filter_Type_of_Milk_legend",
+      "value": null,
+      "on": [
+        {
+          "events": [
+            {
+              "source": "view",
+              "type": "click",
+              "markname": "Type_of_Milk_legend_symbols"
+            },
+            {
+              "source": "view",
+              "type": "click",
+              "markname": "Type_of_Milk_legend_labels"
+            },
+            {
+              "source": "view",
+              "type": "click",
+              "markname": "Type_of_Milk_legend_entries"
+            }
+          ],
+          "update": "datum.value || item().items[0].items[0].datum.value",
+          "force": true
+        },
+        {
+          "events": [{"source": "view", "type": "click"}],
+          "update": "!event.item || !datum ? null : Milk_Filter_Type_of_Milk_legend",
+          "force": true
+        }
+      ]
+    },
+    {
+      "name": "Milk_Filter",
+      "update": "vlSelectionResolve(\"Milk_Filter_store\", \"union\", true, true)"
+    }
+  ],
+  "layout": {"padding": 20, "bounds": "full", "align": "each"},
+  "marks": [
+    {
+      "type": "group",
+      "name": "concat_0_group",
+      "encode": {
+        "update": {
+          "width": {"signal": "childWidth"},
+          "height": {"signal": "height"}
+        }
+      },
+      "signals": [
+        {
+          "name": "Milk_Filter_tuple",
+          "update": "Milk_Filter_Type_of_Milk_legend !== null ? {fields: Milk_Filter_tuple_fields, values: [Milk_Filter_Type_of_Milk_legend]} : null"
+        },
+        {
+          "name": "Milk_Filter_tuple_fields",
+          "value": [{"type": "E", "field": "Type of Milk"}]
+        },
+        {
+          "name": "Milk_Filter_toggle",
+          "value": false,
+          "on": [
+            {
+              "events": {"merge": [{"source": "view", "type": "click"}]},
+              "update": "event.shiftKey"
+            }
+          ]
+        },
+        {
+          "name": "Milk_Filter_modify",
+          "on": [
+            {
+              "events": {"signal": "Milk_Filter_tuple"},
+              "update": "modify(\"Milk_Filter_store\", Milk_Filter_toggle ? null : Milk_Filter_tuple, Milk_Filter_toggle ? null : true, Milk_Filter_toggle ? Milk_Filter_tuple : null)"
+            }
+          ]
+        }
+      ],
+      "marks": [
+        {
+          "name": "concat_0_layer_0_marks",
+          "type": "arc",
+          "style": ["arc"],
+          "interactive": true,
+          "from": {"data": "data_0"},
+          "encode": {
+            "update": {
+              "innerRadius": {"value": 65},
+              "fill": {"scale": "color", "field": "Type of Milk"},
+              "opacity": [
+                {
+                  "test": "!length(data(\"Milk_Filter_store\")) || vlSelectionTest(\"Milk_Filter_store\", datum)",
+                  "value": 0.9
+                },
+                {"value": 0.4}
+              ],
+              "tooltip": {
+                "signal": "{\"Type of Milk\": isValid(datum[\"Type of Milk\"]) ? datum[\"Type of Milk\"] : \"\"+datum[\"Type of Milk\"], \"Eutrophication (g)\": format(datum[\"Eutrophication from milks (g PO43-eq)\"], \"\"), \"Eutrophication %\": format(datum[\"Eutrophication %\"], \"\")}"
+              },
+              "description": {
+                "signal": "\"Eutrophication from milks (g PO43-eq): \" + (format(datum[\"Eutrophication from milks (g PO43-eq)\"], \"\")) + \"; Type of Milk: \" + (isValid(datum[\"Type of Milk\"]) ? datum[\"Type of Milk\"] : \"\"+datum[\"Type of Milk\"]) + \"; Eutrophication (g): \" + (format(datum[\"Eutrophication from milks (g PO43-eq)\"], \"\")) + \"; Eutrophication %: \" + (format(datum[\"Eutrophication %\"], \"\"))"
+              },
+              "x": {"signal": "childWidth", "mult": 0.5},
+              "y": {"signal": "height", "mult": 0.5},
+              "outerRadius": {"signal": "min(childWidth,height)/2"},
+              "startAngle": {
+                "scale": "concat_0_theta",
+                "field": "Eutrophication from milks (g PO43-eq)_end"
+              },
+              "endAngle": {
+                "scale": "concat_0_theta",
+                "field": "Eutrophication from milks (g PO43-eq)_start"
+              }
+            }
+          }
+        },
+        {
+          "name": "concat_0_layer_1_marks",
+          "type": "text",
+          "style": ["text"],
+          "interactive": false,
+          "from": {"data": "data_5"},
+          "encode": {
+            "update": {
+              "font": {"value": "monospace"},
+              "fontSize": {"value": 15},
+              "fill": {"value": "black"},
+              "description": {
+                "signal": "\"type1: \" + (isValid(datum[\"type1\"]) ? datum[\"type1\"] : \"\"+datum[\"type1\"])"
+              },
+              "x": {"signal": "childWidth", "mult": 0.5},
+              "y": {"signal": "height", "mult": 0.5},
+              "text": {
+                "signal": "isValid(datum[\"type1\"]) ? datum[\"type1\"] : \"\"+datum[\"type1\"]"
+              },
+              "align": {"value": "center"},
+              "baseline": {"value": "middle"}
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "name": "concat_1_group",
+      "encode": {
+        "update": {
+          "width": {"signal": "childWidth"},
+          "height": {"signal": "height"}
+        }
+      },
+      "marks": [
+        {
+          "name": "concat_1_layer_0_marks",
+          "type": "arc",
+          "style": ["arc"],
+          "interactive": true,
+          "from": {"data": "data_1"},
+          "encode": {
+            "update": {
+              "innerRadius": {"value": 65},
+              "fill": {"scale": "color", "field": "Type of Milk"},
+              "opacity": [
+                {
+                  "test": "!length(data(\"Milk_Filter_store\")) || vlSelectionTest(\"Milk_Filter_store\", datum)",
+                  "value": 0.9
+                },
+                {"value": 0.4}
+              ],
+              "tooltip": {
+                "signal": "{\"Type of Milk\": isValid(datum[\"Type of Milk\"]) ? datum[\"Type of Milk\"] : \"\"+datum[\"Type of Milk\"], \"GHG Emissions (kg)\": format(datum[\"GHG emissions of milks (kg CO2eq)\"], \"\"), \"GHG %\": format(datum[\"GHG %\"], \"\")}"
+              },
+              "description": {
+                "signal": "\"GHG emissions of milks (kg CO2eq): \" + (format(datum[\"GHG emissions of milks (kg CO2eq)\"], \"\")) + \"; Type of Milk: \" + (isValid(datum[\"Type of Milk\"]) ? datum[\"Type of Milk\"] : \"\"+datum[\"Type of Milk\"]) + \"; GHG Emissions (kg): \" + (format(datum[\"GHG emissions of milks (kg CO2eq)\"], \"\")) + \"; GHG %: \" + (format(datum[\"GHG %\"], \"\"))"
+              },
+              "x": {"signal": "childWidth", "mult": 0.5},
+              "y": {"signal": "height", "mult": 0.5},
+              "outerRadius": {"signal": "min(childWidth,height)/2"},
+              "startAngle": {
+                "scale": "concat_1_theta",
+                "field": "GHG emissions of milks (kg CO2eq)_end"
+              },
+              "endAngle": {
+                "scale": "concat_1_theta",
+                "field": "GHG emissions of milks (kg CO2eq)_start"
+              }
+            }
+          }
+        },
+        {
+          "name": "concat_1_layer_1_marks",
+          "type": "text",
+          "style": ["text"],
+          "interactive": false,
+          "from": {"data": "data_6"},
+          "encode": {
+            "update": {
+              "font": {"value": "monospace"},
+              "fontSize": {"value": 15},
+              "fill": {"value": "black"},
+              "description": {
+                "signal": "\"type4: \" + (isValid(datum[\"type4\"]) ? datum[\"type4\"] : \"\"+datum[\"type4\"])"
+              },
+              "x": {"signal": "childWidth", "mult": 0.5},
+              "y": {"signal": "height", "mult": 0.5},
+              "text": {
+                "signal": "isValid(datum[\"type4\"]) ? datum[\"type4\"] : \"\"+datum[\"type4\"]"
+              },
+              "align": {"value": "center"},
+              "baseline": {"value": "middle"}
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "name": "concat_2_group",
+      "encode": {
+        "update": {
+          "width": {"signal": "childWidth"},
+          "height": {"signal": "height"}
+        }
+      },
+      "marks": [
+        {
+          "name": "concat_2_layer_0_marks",
+          "type": "arc",
+          "style": ["arc"],
+          "interactive": true,
+          "from": {"data": "data_2"},
+          "encode": {
+            "update": {
+              "innerRadius": {"value": 65},
+              "fill": {"scale": "color", "field": "Type of Milk"},
+              "opacity": [
+                {
+                  "test": "!length(data(\"Milk_Filter_store\")) || vlSelectionTest(\"Milk_Filter_store\", datum)",
+                  "value": 0.9
+                },
+                {"value": 0.4}
+              ],
+              "tooltip": {
+                "signal": "{\"Type of Milk\": isValid(datum[\"Type of Milk\"]) ? datum[\"Type of Milk\"] : \"\"+datum[\"Type of Milk\"], \"Land Used (m2)\": format(datum[\"Land use of milks (m2)\"], \"\"), \"Land %\": format(datum[\"Land %\"], \"\")}"
+              },
+              "description": {
+                "signal": "\"Land use of milks (m2): \" + (format(datum[\"Land use of milks (m2)\"], \"\")) + \"; Type of Milk: \" + (isValid(datum[\"Type of Milk\"]) ? datum[\"Type of Milk\"] : \"\"+datum[\"Type of Milk\"]) + \"; Land Used (m2): \" + (format(datum[\"Land use of milks (m2)\"], \"\")) + \"; Land %: \" + (format(datum[\"Land %\"], \"\"))"
+              },
+              "x": {"signal": "childWidth", "mult": 0.5},
+              "y": {"signal": "height", "mult": 0.5},
+              "outerRadius": {"signal": "min(childWidth,height)/2"},
+              "startAngle": {
+                "scale": "concat_2_theta",
+                "field": "Land use of milks (m2)_end"
+              },
+              "endAngle": {
+                "scale": "concat_2_theta",
+                "field": "Land use of milks (m2)_start"
+              }
+            }
+          }
+        },
+        {
+          "name": "concat_2_layer_1_marks",
+          "type": "text",
+          "style": ["text"],
+          "interactive": false,
+          "from": {"data": "data_7"},
+          "encode": {
+            "update": {
+              "font": {"value": "monospace"},
+              "fontSize": {"value": 15},
+              "fill": {"value": "black"},
+              "description": {
+                "signal": "\"type3: \" + (isValid(datum[\"type3\"]) ? datum[\"type3\"] : \"\"+datum[\"type3\"])"
+              },
+              "x": {"signal": "childWidth", "mult": 0.5},
+              "y": {"signal": "height", "mult": 0.5},
+              "text": {
+                "signal": "isValid(datum[\"type3\"]) ? datum[\"type3\"] : \"\"+datum[\"type3\"]"
+              },
+              "align": {"value": "center"},
+              "baseline": {"value": "middle"}
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "name": "concat_3_group",
+      "encode": {
+        "update": {
+          "width": {"signal": "childWidth"},
+          "height": {"signal": "height"}
+        }
+      },
+      "marks": [
+        {
+          "name": "concat_3_layer_0_marks",
+          "type": "arc",
+          "style": ["arc"],
+          "interactive": true,
+          "from": {"data": "data_3"},
+          "encode": {
+            "update": {
+              "innerRadius": {"value": 65},
+              "fill": {"scale": "color", "field": "Type of Milk"},
+              "opacity": [
+                {
+                  "test": "!length(data(\"Milk_Filter_store\")) || vlSelectionTest(\"Milk_Filter_store\", datum)",
+                  "value": 0.9
+                },
+                {"value": 0.4}
+              ],
+              "tooltip": {
+                "signal": "{\"Type of Milk\": isValid(datum[\"Type of Milk\"]) ? datum[\"Type of Milk\"] : \"\"+datum[\"Type of Milk\"], \"Water (L)\": format(datum[\"Water use of milks (L)\"], \"\"), \"Water %\": format(datum[\"Water %\"], \"\")}"
+              },
+              "description": {
+                "signal": "\"Water use of milks (L): \" + (format(datum[\"Water use of milks (L)\"], \"\")) + \"; Type of Milk: \" + (isValid(datum[\"Type of Milk\"]) ? datum[\"Type of Milk\"] : \"\"+datum[\"Type of Milk\"]) + \"; Water (L): \" + (format(datum[\"Water use of milks (L)\"], \"\")) + \"; Water %: \" + (format(datum[\"Water %\"], \"\"))"
+              },
+              "x": {"signal": "childWidth", "mult": 0.5},
+              "y": {"signal": "height", "mult": 0.5},
+              "outerRadius": {"signal": "min(childWidth,height)/2"},
+              "startAngle": {
+                "scale": "concat_3_theta",
+                "field": "Water use of milks (L)_end"
+              },
+              "endAngle": {
+                "scale": "concat_3_theta",
+                "field": "Water use of milks (L)_start"
+              }
+            }
+          }
+        },
+        {
+          "name": "concat_3_layer_1_marks",
+          "type": "text",
+          "style": ["text"],
+          "interactive": false,
+          "from": {"data": "data_8"},
+          "encode": {
+            "update": {
+              "font": {"value": "monospace"},
+              "fontSize": {"value": 15},
+              "fill": {"value": "black"},
+              "description": {
+                "signal": "\"type2: \" + (isValid(datum[\"type2\"]) ? datum[\"type2\"] : \"\"+datum[\"type2\"])"
+              },
+              "x": {"signal": "childWidth", "mult": 0.5},
+              "y": {"signal": "height", "mult": 0.5},
+              "text": {
+                "signal": "isValid(datum[\"type2\"]) ? datum[\"type2\"] : \"\"+datum[\"type2\"]"
+              },
+              "align": {"value": "center"},
+              "baseline": {"value": "middle"}
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": [
+        "Almond milk",
+        "Dairy milk",
+        "Oat milk",
+        "Rice milk",
+        "Soy milk"
+      ],
+      "range": ["#ecf07b", "#e2e859", "#d7de4b", "#cad33d", "#bdc849"]
+    },
+    {
+      "name": "concat_0_theta",
+      "type": "linear",
+      "domain": {
+        "data": "data_0",
+        "fields": [
+          "Eutrophication from milks (g PO43-eq)_start",
+          "Eutrophication from milks (g PO43-eq)_end"
+        ]
+      },
+      "range": [0, 6.283185307179586],
+      "zero": true
+    },
+    {
+      "name": "concat_1_theta",
+      "type": "linear",
+      "domain": {
+        "data": "data_1",
+        "fields": [
+          "GHG emissions of milks (kg CO2eq)_start",
+          "GHG emissions of milks (kg CO2eq)_end"
+        ]
+      },
+      "range": [0, 6.283185307179586],
+      "zero": true
+    },
+    {
+      "name": "concat_2_theta",
+      "type": "linear",
+      "domain": {
+        "data": "data_2",
+        "fields": ["Land use of milks (m2)_start", "Land use of milks (m2)_end"]
+      },
+      "range": [0, 6.283185307179586],
+      "zero": true
+    },
+    {
+      "name": "concat_3_theta",
+      "type": "linear",
+      "domain": {
+        "data": "data_3",
+        "fields": ["Water use of milks (L)_start", "Water use of milks (L)_end"]
+      },
+      "range": [0, 6.283185307179586],
+      "zero": true
+    }
+  ],
+  "legends": [
+    {
+      "labelColor": "#333d29",
+      "titleColor": "#333d29",
+      "fill": "color",
+      "symbolType": "circle",
+      "title": "Type of Milk",
+      "encode": {
+        "labels": {
+          "name": "Type_of_Milk_legend_labels",
+          "interactive": true,
+          "update": {
+            "opacity": [
+              {
+                "test": "(!length(data(\"Milk_Filter_store\")) || (Milk_Filter[\"Type of Milk\"] && indexof(Milk_Filter[\"Type of Milk\"], datum.value) >= 0))",
+                "value": 1
+              },
+              {"value": 0.35}
+            ]
+          }
+        },
+        "symbols": {
+          "name": "Type_of_Milk_legend_symbols",
+          "interactive": true,
+          "update": {
+            "opacity": [
+              {
+                "test": "(!length(data(\"Milk_Filter_store\")) || (Milk_Filter[\"Type of Milk\"] && indexof(Milk_Filter[\"Type of Milk\"], datum.value) >= 0))",
+                "value": 0.9
+              },
+              {"value": 0.35}
+            ]
+          }
+        },
+        "entries": {
+          "name": "Type_of_Milk_legend_entries",
+          "interactive": true,
+          "update": {"fill": {"value": "transparent"}}
+        }
+      }
+    }
+  ],
+  "config": {}
+}

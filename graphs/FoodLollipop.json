@@ -1,11 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "background": "#f4f4d5",
-  "title": {
-      "text": "Emission to the Environment from Different Type of Food",
-      "color": "#333d29",
-      "fontSize": 20
-      },
+  "background": "#dde5b6",
   "data": {
     "url": "https://raw.githubusercontent.com/LesinTeohMonash/Data-Visualization-2/main/datasets/emissions-per-kg-food.csv"
   },
