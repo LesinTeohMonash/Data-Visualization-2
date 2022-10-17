@@ -3,11 +3,6 @@
   "background": "#dde5b6",
   "width": 500,
   "height": 400,
-  "title": {
-    "text": "Share of Global Food Emissions",
-    "color": "#333d29",
-    "fontSize": 20
-    },
   "data": {
     "url": "https://raw.githubusercontent.com/LesinTeohMonash/Data-Visualization-2/main/datasets/share-global-food-emissions.csv"
   },

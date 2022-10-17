@@ -1,9 +1,4 @@
 {"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {
-    "text": "Food Emission Produced by each Country",
-    "color": "#333d29",
-    "fontSize": 20
-    },
   "width": 800,
   "height": 500,
   "background": "#dde5b6",
