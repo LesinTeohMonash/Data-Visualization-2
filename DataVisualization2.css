@@ -1,3 +1,17 @@
+html, body{
+    background-color: #606c38;
+}
+
+.inner-page{
+    padding-left: 35px;
+    padding-right: 40px;
+    padding-bottom: 50px;
+    padding-top: 10px;
+    margin-left: 70px;
+    margin-right: 70px;
+    background-color: #dde5b6;
+}
+
 #h1-style{
     color: #333d29;
     font-family: 'Fondamento', cursive;
@@ -6,65 +20,42 @@
 
 h2{
     color: #333d29;
+    font-family: 'Fondamento', cursive;
+}
+
+h3{
+    color: #333d29;
+    font-family: 'Fondamento', cursive;
 }
 
 p{
+    font-size: 18px;
+    font-family: 'Libre Baskerville', serif;
     color: #585123;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
-.right-align{
-    text-align: right;
+.bold {
+    font-weight: bold;
 }
 
-.center-align{
-    text-align: center;
+.bold-green {
+    font-weight: bold;
+    color: #007200;
 }
 
-html, body{
-    padding-left: 50px;
-    padding-right: 50px;
-    padding-bottom: 50px;
-    padding-top: 10px;
-    background-color: #dde5b6;
+.donut-desc {
+    padding-left: 90px;
+    padding-top: 30px;
 }
 
-
-
-.graphs-container{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+#LineChart {
+    padding-left: 40px;
 }
 
-/* not working */
-/* making the text to left */
-.text-container{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: left;
-}
-
-.first-graphs{
-    height: 40vh;
-}
-
-.graph-title{
-    text-align: center;
-    font-size: small;
-}
-
-.left-title{
-    font-size: small;
-    text-align: left;
-}
-
-.whitespace{
-    white-space: pre-line;
-}
-
-.impact-graph-title{
-    font-size: small; 
-
+.map-desc{
+    padding-top: 80px;
 }
 
 .pure-u-1 img{
@@ -72,7 +63,36 @@ html, body{
     height: 10vw;
 }
 
-/* not working */
-.border-para{
-    border: 5px #333d29;
+#invisible-authorship{
+    color: #dde5b6;
+}
+
+#pad-top{
+    padding-top: 49px;
+}
+
+#pad-top2{
+    padding-top: 49px;
+}
+
+#reference{
+    font-size: x-large;
+    font-weight: bold;
+    color: #007200;
+}
+
+.pure-u-1-3 img{
+    width: 28vw;
+    height: 14vw;
+    padding-top: 20px;
+}
+
+.text-not-imp{
+    font-size: smaller;
+    color: #adc178;
+}
+
+.bold-red{
+    font-weight: bold;
+    color: #800f2f;
 }

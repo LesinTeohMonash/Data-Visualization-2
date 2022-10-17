@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Data Visualization 2</title>
+    <title>Go Vegan</title>
 
     <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
@@ -22,99 +22,153 @@
 
 
 <body>
-    <div class="pure-u-1">
-        <img src="go-vegan.jpg">
-    </div>
-    
-    <!-- First Graphs - Food Emission Produced by Each Food-->
-    <div class="border-para">
-        <h2>Food Emission Produced by Each Food</h2>
-        <div id="lollipop"></div>
-     
 
-        <!-- Description for First Graphs -->
-        <div class="pure-g">
-            <div class="pure-u-1-2">
-                <p>The line charts above shows the food emission for all foods in the list.</p>
-                <p>If you want to check the emission of certain food, simply click on the "Food Selection" tab and choose the food that you after.</p>
-                <p>Observe these four line charts, it is obvious that beef, lamb, milk and food which are non vegan produce higher emission.</p>
-            </div>
+    <div class="inner-page">
 
-            <div class="pure-u-1-2">
-                <p>On the other hand, plant based food always produce less emission.</p>
-                <p>From these graphs, we only know which food produce more or less emission compared to other foods.</p>
-                <p>However, there is no clue to the factors and reasons to what cause the food emission vary to the types of foods. </p>
-            </div>
-        
-        
-        </div>
-    </div>
-
-    <!-- Second Graphs - Food Emission Produced by Each Milk-->
-    <div class="border-para">
-        <h2>Food Emission Produced by Each Milk</h2>
-        <div id="pieChart"></div>
-
-        <!-- Description for Second Graphs -->
-        <div class="pure-g">
-            <div class="pure-u-1-2">
-                <p>From the pie charts above, we know that dairy milk produce higher emission to the environment.</p>
-                <p>Meanwhile, the plant-based milk are always produce less emision to the  environment.</p>
-                <p>From the bar chart, we know the impact that brought by the dairy milk is the most compared to other types of milk.</p>
-            </div>
-
-            <div class="pure-u-1-2">
-                <p>The type of milk that leads the least impact to the environment is soy milk and it is strongly recommended to consume any plant-based milk instead of dairy milk.</p>
-                <p>To see less types of milk, press the label on the right of the pie charts and bar chart. </p>
-                <p>Hover to the graphs and the information will be shown on the tooltip</p>
-            </div>
-        </div>
-    </div>
-        
-    
-    <!-- Third Graph -->
-    <div class="border-para">
-        <h2>Share Emission by each Countries</h2>
+        <hr width="100%" 
+        size="20">
 
         <div class="pure-g">
+
+            <!-- Go Vegan Pic -->
+            <div class="pure-u-1">
+                <img src="go-vegan.jpg">
+            </div>
+
+            <hr width="100%" 
+            size="20">
+
+            <div class="pure-u-1-3">
+                <h2>Introduction</h2>
+                <p>Are the <span class="bold-green">foods </span> we consume everyday cause any <span class="bold-green">impact to the environment</span>?</p>
+                <p>Are the impact positive or negative? </p>
+                <p>Will <span class="bold">different type of foods</span> give <span class="bold">different impact</span> to the environment?</p>
+            </div>
+
+            <div class="pure-u-1-3" id="pad-top">
+                <p>This webpage will be discussing <span class="bold">different types of emission</span> produced by <span class="bold"> different foods</span> in terms of <span class="bold-green">plant-based</span> or <span class="bold-green">animal-based</span></p>
+                <p>This webpage is inspired by the topic of <span id="reference"">Environmental Impacts of Food Production</span> by <span class="bold">Our World in Data</span></p>
+            </div>
+
+            <div class="pure-u-1-3">
+                <img src="animal-vs-plant.jpg" alt="">
+            </div>
+
+            <hr width="100%" 
+            size="20">
+
+            <!-- First Graphs - Food Emission Produced by Each Food-->
+            <div class="pure-u-1">
+                <h2>Food Emission Produced by Each Food</h2>
+                <div id="lollipop" class="vis-container"></div>
+            </div>
+
+            <!-- Description for First Graphs -->
+            <!-- BOLD THE IMPORTANT WORDS 1. with colour 2. without colour -->
+            <div class="pure-u-1">
+                <p class="text-not-imp">1. In order to check the emission of certain food, simply click on the "Food Selection" and choose the food that you after.</p>
+                <p class="text-not-imp">2. GHG is the abbreviation of Green House Gases.</p>
+            </div>
+
+            <div class="pure-u-1-3">
+                <p>The charts above show the food emission for all foods in the list.</p>
+                <p>Observe these four line charts, it is obvious that <span class="bold-red">beef produces higher emission</span> for all types of food emission.</p>
+                <p>However, on the other hand, <span class="bold-green">plant-based food</span> like </p>
+            </div>
+
+            <div class="pure-u-1-3">
+                <p><span class="bold-green">apples, banana </span>  produce much more lower food emission to the environment. </p>
+                <p>Although the data are collected in the year 2010, the fact of <span class="bold-red">animal-based food </span>produces <span class="bold-red"> more emission </span> to the environment,
+                which will cause negative impact to the environment.</p>
+            </div>
+
+            <div class="pure-u-1-3">
+                <img src="animal-vs-plant2.jpg">
+            </div>
+
+            <hr width="100%" 
+            size="20">
+
+            <!-- Second graph -->
             <div class="pure-u-2-3">
+                <h2>Food Emission Produced by Each Milk</h2>
+                <div id="donutChart" class="vis-container"></div>
+            </div>
+
+            <div class="pure-u-1-3">
+                <div class="donut-desc">
+                    <p>Meanwhile the donut charts on the left showing the <span class="bold-green"> emission produced by different types of milk</span>. </p>
+                    <p>From the charts, we know the impact that brought by the dairy milk is the most compared to other types of milk
+                        while other plant-based milk produce lesser emission. That means they are more environmental friendly.</p>
+                </div>
+                
+            </div>
+
+            <hr width="100%" 
+            size="20">
+
+            <!-- third graph -->
+            <div class="pure-u-2-3">
+                <h3>Map form</h3>
                 <div id="MapChart"></div>
             </div>
 
-            <!-- Description for Third Graphs -->
             <div class="pure-u-1-3">
-                <p>The line chart above shows the food emission produce by each of the country.  </p>
-                <p>For instance, if a food is produced from Australia but exported to Africa, the food emission goes under Australia.</p>
-                <p>The share here means the percentage of the food which produce n percentage over the total food for each country.</p>
-                <p>For example, Australia produces n amount of food, while 10% of of them producing food emission. The share of food emission in Australia is 10%</p>
+                <div class="map-desc">
+                    <p>The map on the left shows the food emission produce <span class="bold">worldwide</span>.  </p>
+                    <p>For instance, if a food is produced from <span class="bold">Australia</span>  but <span class="bold">exported</span>  to <span class="bold">Africa</span>, the food emission <span class="bold">goes under Australia</span> .</p>
+                    <p>The share here means the percentage of the food which produce n percentage over the total food for each country.</p>
+                    <p>For example, Australia produces n amount of food, while 10% of of them producing food emission. The share of food emission in Australia is 10%</p>
+                    <p>Hence, from the map, we know <span class="bold-red">Brazil and China</span> produce the most food emission throughtout the world, could possibly due to 
+                    large amount of exported item or other reasons. </p>
+                </div>
+
+                <div>
+                    <p class="text-not-imp">To filter out the areas that you after, simply click on the Continent Selection selection and choose the continent you interested.</p>
+                </div>
             </div>
-        </div>
-    </div>
-    
-    <!-- Forth Graph -->
-    <div class="border-para">
-        <div class="pure-g">
-            <div class="pure-u-1-3">
-                <p>The map above shows which counties produce higher amount of food emission all around the world.</p>
+
+            <hr width="100%" 
+            size="20">
+
+            <!-- forth graph -->
+            <div class="pure-u-1-5">
+                <h3>Detailed form</h3>
+                <p>The line chart on the right are showing the counties produce higher amount of food emission all around the world.</p>
+                <p>The information carried out here is similar to the map above. However, The map is showing which continents produce most of the food emission
+                     while the line chart on the right showing the <span class="bold">detail figures and the trend</span> on the y-axis <span class="bold">from the year 1990 to 2015</span>.
+                </p>
                 <p>The colour of the countries and the size of the bubbles indicate the amount of the food emission</p>
+                
+            </div>
+
+            <div class="pure-u-1-5" id="pad-top2">
                 <p>It is obvious the Brazil produces the highest amount of food emission compared to other countries in the list.</p>
                 <p>The amount of food emission produced by Australia is not as high as Brazil and China, instead, Australia only produces not greater than 1.2 percent of food emission.</p>
                 <p>The information of the countries for food emission is included in the tooltop. Simply hover the cursor to the countries you after, and the information will be shown.</p>
             </div>
 
-            <!-- Description for Forth Graphs -->
-            <div class="pure-u-1-2">
+            <div class="pure-u-3-5">
                 <div id="LineChart"></div>
+                <p class="text-not-imp">To check the <span class="bold"> Continent</span> that we interested, kindly select the continent from the "Continent Selection" button</p>
             </div>
+
+            <p id="invisible-authorship">Made by Lesin Teoh - Data Visualization 2</p>
+
+            
+                
+
         </div>
+
     </div>
+        
 
     <script type="text/javascript">
         // lollipop
         var lollipop = "https://raw.githubusercontent.com/LesinTeohMonash/Data-Visualization-2/main/graphs/FoodLollipop.json";
         
         // pie chart
-        var pieChart = "https://raw.githubusercontent.com/LesinTeohMonash/Data-Visualization-2/main/graphs/MilkPie.json";
+        var donutChart = "https://raw.githubusercontent.com/LesinTeohMonash/Data-Visualization-2/main/graphs/MilkDonut1.json";
 
         // MapChart
         var MapChart = "https://raw.githubusercontent.com/LesinTeohMonash/Data-Visualization-2/main/graphs/Map.json";
@@ -126,7 +180,7 @@
         var MapVis = "https://raw.githubusercontent.com/LesinTeohMonash/3179/main/Data%20Visualisation%202/graphs/Share/Map.json";
     
         vegaEmbed('#lollipop', lollipop, { "actions": false });
-        vegaEmbed('#pieChart', pieChart, { "actions": false });
+        vegaEmbed('#donutChart', donutChart, { "actions": false });
         vegaEmbed('#MapChart', MapChart, { "actions": false });
     
         vegaEmbed('#LineChart', LineChart, { "actions": false }).then(function (result) {
