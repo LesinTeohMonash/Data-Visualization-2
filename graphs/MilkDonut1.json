@@ -502,7 +502,7 @@
         "Rice milk",
         "Soy milk"
       ],
-      "range": ["#ecf07b", "#e2e859", "#d7de4b", "#cad33d", "#bdc849"]
+      "range": ["#ffff3f", "#dddf00", "#e4ff1a", "#bfd200", "#dddf00"]
     },
     {
       "name": "concat_0_theta",
